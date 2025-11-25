@@ -87,8 +87,14 @@ class Index extends Component
 
         $roles = Role::orderByRaw("CASE WHEN name = 'root' THEN 0 ELSE 1 END")
             ->orderBy('name')
-            ->get();
+            ->get()
+            ->map(fn($role) => ['label' => ucfirst($role->name), 'value' => $role->name]);
 
-        return view('livewire.users.index', compact('users', 'roles'));
+        $statusOptions = [
+            ['label' => 'Aktif', 'value' => 'active'],
+            ['label' => 'Tidak Aktif', 'value' => 'inactive'],
+        ];
+
+        return view('livewire.users.index', compact('users', 'roles', 'statusOptions'));
     }
 }

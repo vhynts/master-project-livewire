@@ -55,35 +55,22 @@
 
             {{-- Role --}}
             <div>
-                <label class="block text-sm font-medium text-gray-700">
-                    Role
-                </label>
-                <select
-                    wire:model.live="role"
-                    class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-blue-500"
-                >
-                    <option value="">Semua Role</option>
-                    @foreach ($roles as $roleOption)
-                        <option value="{{ $roleOption->name }}">
-                            {{ ucfirst($roleOption->name) }}
-                        </option>
-                    @endforeach
-                </select>
+                <x-searchable-select
+                    label="Role"
+                    model="role"
+                    :options="$roles"
+                    placeholder="Semua Role"
+                />
             </div>
 
             {{-- Status --}}
             <div>
-                <label class="block text-sm font-medium text-gray-700">
-                    Status
-                </label>
-                <select
-                    wire:model.live="status"
-                    class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-blue-500"
-                >
-                    <option value="">Semua Status</option>
-                    <option value="active">Aktif</option>
-                    <option value="inactive">Tidak Aktif</option>
-                </select>
+                <x-searchable-select
+                    label="Status"
+                    model="status"
+                    :options="$statusOptions"
+                    placeholder="Semua Status"
+                />
             </div>
         </div>
 
